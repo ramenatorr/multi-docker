@@ -12,3 +12,8 @@ after_success:
     - docker build -t ramenator/multi-docker-server ./server
     - docker build -t ramenator/multi-docker-nginx ./nginx
     - docker build -t ramenator/multi-docker-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login-u "$DOCKER_ID" --password-stdin
+    - docker push ramenator/multi-docker-client
+    - docker push ramenator/multi-docker-nginx
+    - docker push ramenator/multi-docker-server
+    - docker push ramenator/multi-docker-worker
